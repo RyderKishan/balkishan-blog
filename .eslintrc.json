@@ -1,0 +1,43 @@
+{
+  "env": {
+    "es6": true
+  },
+  "extends": [
+    "airbnb"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly",
+    "document": true,
+    "test": true,
+    "it": true,
+    "$": true,
+    "$$": true,
+    "browser": true,
+    "expect": true,
+    "jest": true,
+    "beforeEach": true,
+    "beforeAll": true,
+    "afterEach": true,
+    "window": true,
+    "describe": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ]
+  }
+}

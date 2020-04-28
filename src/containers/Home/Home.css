@@ -1,0 +1,47 @@
+.Home {
+  flex: 1;
+  display: flex;
+  padding: 1em;
+  min-height: calc(100% - 4em);
+  flex-direction: column;
+}
+
+.make-center {
+  width: 100%;
+  place-content: center;
+  display: grid;
+}
+
+.Home > .actions {
+  margin-bottom: 1em;
+}
+
+.Home > .actions > button {
+  margin-right: 1em;
+  color: white;
+  background-color: #0D475E;
+}
+
+.Home > .results {
+  flex: 1;
+  display: flex;
+}
+
+.actions > button[disabled] {
+ color: gray;
+}
+
+.results .postContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.postContainer .MuiPaper-root {
+  max-width: 345px;
+  margin: 0.5em;
+}
+
+.make-center .MuiCircularProgress-root {
+  color: #0D475E;
+}

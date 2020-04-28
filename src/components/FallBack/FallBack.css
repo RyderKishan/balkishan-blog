@@ -1,0 +1,10 @@
+.FallBack {
+  padding: 32px;
+}
+
+.FallBackHeader {
+  height: 70px;
+  font-size: 10.5em;
+  font-weight: bold;
+  line-height: 70px;
+}

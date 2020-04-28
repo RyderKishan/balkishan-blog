@@ -1,0 +1,68 @@
+{
+  "name": "balkishan-blog",
+  "version": "1.0.0",
+  "description": "Website of Balkishan",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.9.12",
+    "prop-types": "^15.7.2",
+    "qs": "^6.9.3",
+    "ramda": "^0.27.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "uuid": "^7.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "compression-webpack-plugin": "^3.1.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-loader": "^3.5.3",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^3.0.0",
+    "favicons-webpack-plugin": "^3.0.1",
+    "html-loader": "^1.1.0",
+    "html-webpack-plugin": "^4.2.1",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.0",
+    "sass-loader": "^8.0.2",
+    "terser-webpack-plugin": "^2.3.6",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3",
+    "webpack-manifest-plugin": "^2.2.0",
+    "webpack-merge": "^4.2.2"
+  },
+  "scripts": {
+    "test": "jest --forceExit -c jest.config.js",
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyderKishan/balkishan-blog.git"
+  },
+  "keywords": [
+    "React",
+    "Kishan"
+  ],
+  "author": "Balkishan S",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RyderKishan/balkishan-blog/issues"
+  },
+  "homepage": "https://github.com/RyderKishan/balkishan-blog#readme"
+}

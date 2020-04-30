@@ -1,6 +1,10 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Futura BK BT', Arial, sans-serif !important;
-  font-size: 1em;
+  font-size: 14px;
   margin: 0;
   height: 100vh;
   width: 100vw;
@@ -9,35 +13,6 @@ body {
 #app {
   height: 100%;
   width: 100%;
-}
-
-.KishanUi {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-header {
-  height: 5em;
-  background: #0D475E;
-  padding: 0 1em;
-  color: white;
-}
-
-footer {
-  height: 3em;
-  color: white;
-  background: #0D475E;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  font-size: 11px;
-}
-
-article {
-  flex: 1;
-  overflow: auto;
 }
 
 @font-face {

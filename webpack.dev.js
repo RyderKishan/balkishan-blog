@@ -16,6 +16,7 @@ module.exports = merge(common, {
     compress: true,
     open: false,
     writeToDisk: false,
+    host: '192.168.18.5',
     contentBase: 'build',
     historyApiFallback: true,
     liveReload: true,

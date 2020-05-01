@@ -28,6 +28,7 @@ import {
 } from '@material-ui/pickers';
 
 const Example = () => {
+  // eslint-disable-next-line no-console
   console.log('Example');
   return (
     <div className="Example">

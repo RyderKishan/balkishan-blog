@@ -6,13 +6,6 @@ body {
   font-family: 'Futura BK BT', Arial, sans-serif !important;
   font-size: 14px;
   margin: 0;
-  height: 100vh;
-  width: 100vw;
-}
-
-#app {
-  height: 100%;
-  width: 100%;
 }
 
 @font-face {

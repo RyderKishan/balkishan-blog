@@ -7,7 +7,7 @@ const About = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      About
+      Under Construction
     </div>
   );
 };

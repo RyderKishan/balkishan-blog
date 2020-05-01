@@ -83,7 +83,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: (props) => responsiveStyles[props.width].companySize,
   },
   fabIcon: {
+    position: 'fixed',
     bottom: theme.spacing(4),
+    right: theme.spacing(4),
   },
 }));
 

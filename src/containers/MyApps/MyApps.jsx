@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import cn from 'classnames';
 import Card from '@material-ui/core/Card';
@@ -9,27 +10,28 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import useStyles from './styles';
+import { apps } from './constants';
+import { useWidth } from '../../utils';
 
 const MyApps = () => {
-  const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const classes = useStyles({
+    width: useWidth(),
+  });
+  const [expanded, setExpanded] = React.useState('');
+  const handleExpand = (id) => {
+    setExpanded(id === expanded ? '' : id);
   };
-
-  const renderCard = () => (
-    <Card className={classes.root}>
+  const renderCard = (cardProps) => (
+    <Card key={cardProps.id} className={classes[cardProps.cardClass]}>
       <CardHeader
         avatar={(
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
+          <Avatar aria-label="avatar" className={classes[cardProps.avatarClass]}>
+            {cardProps.avatar}
           </Avatar>
           )}
         action={(
@@ -37,72 +39,57 @@ const MyApps = () => {
             <MoreVertIcon />
           </IconButton>
           )}
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={cardProps.title}
+        subheader={cardProps.subheader}
       />
       <CardMedia
-        className={classes.media}
-        image="/public/images/paella.jpg"
-        title="Paella dish"
+        className={classes[cardProps.cardMediaClass]}
+        image={cardProps.image}
+        title={cardProps.imageTitle}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook together with your
-          guests. Add 1 cup of frozen peas along with the mussels, if you like.
+          {cardProps.cardContent}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
+        <IconButton
+          aria-label="view app"
+          onClick={() => window.open(cardProps.href)}
+        >
+          <VisibilityIcon />
         </IconButton>
         <IconButton
           className={cn(classes.expand, {
-            [classes.expandOpen]: expanded,
+            [classes.expandOpen]: expanded === cardProps.id,
           })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
+          onClick={() => handleExpand(cardProps.id)}
+          aria-expanded={expanded === cardProps.id}
           aria-label="show more"
         >
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Collapse
+        in={expanded === cardProps.id}
+        timeout="auto"
+        unmountOnExit
+      >
         <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-            minutes.
-          </Typography>
-          <Typography paragraph>
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-            heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-            browned, 6 to 8 minutes.
-            Transfer shrimp to a large plate and set aside, leaving chicken
-            and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-            pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-            saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-            without stirring, until most of the liquid is absorbed,
-            15 to 18 minutes. Reduce heat to
-            medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-            again without stirring, until mussels have opened and rice is just tender, 5 to 7
-            minutes more. (Discard any mussels that don’t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
+          {
+            cardProps.paragraphs.map((text, index) => (
+              <Typography key={index} paragraph>{text}</Typography>
+            ))
+          }
         </CardContent>
       </Collapse>
     </Card>
   );
   return (
-    <div>
-      {renderCard()}
+    <div className={classes.root}>
+      {
+        apps.map((cardProps) => renderCard(cardProps))
+      }
     </div>
   );
 };

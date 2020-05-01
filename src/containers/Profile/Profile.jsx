@@ -1,11 +1,14 @@
 import React from 'react';
 import cn from 'classnames';
-import { Avatar, IconButton } from '@material-ui/core';
+import {
+  Avatar, IconButton, Zoom, Fab, Tooltip,
+} from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import MailIcon from '@material-ui/icons/Mail';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import DescriptionIcon from '@material-ui/icons/Description';
 
 
 import { useWidth } from '../../utils';
@@ -30,6 +33,23 @@ const Profile = () => {
   };
   return (
     <div className={classes.root}>
+      <Zoom
+        in
+        timeout={{
+          enter: 500,
+        }}
+      >
+        <Tooltip title="Resume" aria-label="resume">
+          <Fab
+            className={classes.fabIcon}
+            color="secondary"
+            aria-label="scroll"
+            onClick={() => window.open('/public/docs/Resume.pdf')}
+          >
+            <DescriptionIcon />
+          </Fab>
+        </Tooltip>
+      </Zoom>
       <div
         className={cn(
           classes.fullPageContainer,

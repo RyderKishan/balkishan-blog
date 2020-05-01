@@ -7,11 +7,11 @@ export default [
   {
     id: 'aboutMe',
     name: 'About Me',
-    href: '/about?error=BUILD',
+    href: '/about',
   },
   {
     id: 'myApps',
     name: 'My Apps',
-    href: '/myapps?error=BUILD',
+    href: '/myapps',
   },
 ];

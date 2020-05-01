@@ -3,6 +3,8 @@ import { withRouter, Route, Switch } from 'react-router-dom';
 
 import Home from '../Home';
 import Profile from '../Profile';
+import About from '../About';
+import MyApps from '../MyApps';
 import Header from '../../components/Header';
 import FallBack from '../../components/FallBack';
 import Example from '../Example';
@@ -20,8 +22,8 @@ const KishanUi = () => {
           <Route path="/" exact render={() => <Home />} />
           <Route path="/example" exact render={() => <Example />} />
           <Route path="/profile" exact render={() => <Profile />} />
-          <Route path="/contact" render={() => <div className="Contact">Contact</div>} />
-          <Route path="/about" render={() => <div className="About">About</div>} />
+          <Route path="/about" exact render={() => <About />} />
+          <Route path="/myapps" exact render={() => <MyApps />} />
           <Route component={FallBack} />
         </Switch>
       </main>

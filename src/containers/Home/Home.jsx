@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
 import cn from 'classnames';
 import Fab from '@material-ui/core/Fab';
 import Zoom from '@material-ui/core/Zoom';
@@ -54,13 +53,5 @@ const Home = () => {
     </div>
   );
 };
-
-// Home.defaultProps = {
-//   width: '',
-// };
-
-// Home.propTypes = {
-//   width: PropTypes.string,
-// };
 
 export default Home;

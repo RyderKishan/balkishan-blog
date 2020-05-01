@@ -39,9 +39,16 @@ const responsiveStyles = {
 };
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    // display: 'grid',
-    // gridTemplateColumns: (props) => `repeat(${responsiveColumns[props.width]}, auto)`,
+  social: {
+    display: 'flex',
+    alignItems: 'center',
+    height: '100%',
+    justifyContent: 'center',
+  },
+  socialItem: {
+    width: theme.spacing(12),
+    height: theme.spacing(12),
+    display: 'grid',
   },
   personal: {
     display: 'flex',

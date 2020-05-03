@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import {
-  Hidden, IconButton, Menu, MenuItem, Fade, InputBase,
+  Hidden, IconButton, Menu, MenuItem, Fade, InputBase, Grow,
 } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
@@ -49,13 +49,14 @@ const Header = () => {
         <div className={classes.links}>
           {
             links.map((link) => (
-              <span
-                key={link.id}
-                role="none"
-                onClick={() => onLinkClick(link.href)}
-              >
-                {link.name}
-              </span>
+              <Grow in key={link.id} timeout={{ enter: 500 }}>
+                <span
+                  role="none"
+                  onClick={() => onLinkClick(link.href)}
+                >
+                  {link.name}
+                </span>
+              </Grow>
             ))
           }
         </div>

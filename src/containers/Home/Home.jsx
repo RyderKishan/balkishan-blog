@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
-import Fab from '@material-ui/core/Fab';
-import Zoom from '@material-ui/core/Zoom';
+import { Fab, Zoom, Grow } from '@material-ui/core';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
-import { useWidth } from '../../utils';
 
+import { useWidth } from '../../utils';
 import useStyles from './styles';
 import { sections } from './constants';
 
@@ -44,9 +43,11 @@ const Home = () => {
             key={section.id}
             id={section.id}
           >
-            <div className={classes.welcomeTextResponsible}>
-              {section.name}
-            </div>
+            <Grow in timeout={{ enter: 1000 }}>
+              <div className={classes.welcomeTextResponsible}>
+                {section.name}
+              </div>
+            </Grow>
           </div>
         ))
       }

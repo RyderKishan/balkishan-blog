@@ -1,27 +1,36 @@
 import { makeStyles } from '@material-ui/core';
 
+const responsiveStyles = {
+  xs: {
+    margin: 2,
+  },
+  sm: {
+    margin: 8,
+  },
+  md: {
+    margin: 24,
+  },
+  lg: {
+    margin: 36,
+  },
+  xl: {
+    margin: 48,
+  },
+};
+
+
 const useStyles = makeStyles((theme) => ({
-  social: {
-    display: 'flex',
-    alignItems: 'center',
-    height: '100%',
-    justifyContent: 'center',
+  root: {
+    margin: (props) => `${theme.spacing(2)} ${theme.spacing(responsiveStyles[props.width].margin)}`,
   },
-  socialItem: {
-    width: theme.spacing(12),
-    height: theme.spacing(12),
-    display: 'grid',
-  },
-  personal: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    placeContent: 'center',
-  },
-  fullPageContainer: {
-    height: (props) => `calc(${props.screenHeight}px - 2em)`,
-    padding: theme.spacing(2),
-    borderBottom: `1px solid ${theme.palette.divider}`,
+  paragraphSection: {
+    marginBottom: theme.spacing(2),
+    '& > div': {
+      marginBottom: theme.spacing(2),
+    },
+    '& :first-child': {
+      marginBottom: theme.spacing(1),
+    },
   },
 }));
 

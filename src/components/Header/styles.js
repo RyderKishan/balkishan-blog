@@ -11,6 +11,22 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[3],
     padding: `0 ${theme.spacing(2)}`,
   },
+  sticky: {
+    position: 'sticky',
+    top: 0,
+    opacity: 0.95,
+    animation: `$enter 0.5s ${theme.transitions.easing.easeInOut}`,
+  },
+  '@keyframes enter': {
+    '0%': {
+      opacity: 0,
+      top: -50,
+    },
+    '100%': {
+      opacity: 0.95,
+      top: 0,
+    },
+  },
   image: {
     height: theme.spacing(6),
     cursor: 'pointer',

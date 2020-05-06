@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import { useHistory } from 'react-router-dom';
 import {
   Hidden, IconButton, Menu, MenuItem, Fade, InputBase, Grow,
@@ -13,7 +14,10 @@ import useStyles from './styles';
 const Header = () => {
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const classes = useStyles();
+  const [fixedHeader, setHeader] = React.useState(false);
+  const classes = useStyles({
+    scroll: window.scrollY,
+  });
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -23,8 +27,24 @@ const Header = () => {
   const onLinkClick = (href) => {
     window.location.href = href;
   };
+  const onScroll = () => {
+    const headerHeight = document.getElementById('app-header').offsetHeight;
+    const { scrollY } = window;
+    if (scrollY > headerHeight * 2 && !fixedHeader) {
+      setHeader(true);
+    } else if (fixedHeader && scrollY < headerHeight * 2) {
+      setHeader(false);
+    }
+  };
+  window.onscroll = onScroll;
   return (
-    <header className={classes.root}>
+    <header
+      id="app-header"
+      className={cn({
+        [`${classes.root}`]: true,
+        [`${classes.sticky}`]: fixedHeader,
+      })}
+    >
       <img
         alt="logo"
         className={classes.image}

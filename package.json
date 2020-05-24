@@ -43,6 +43,7 @@
     "html-webpack-plugin": "^4.2.1",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.0",
+    "nodemon": "^2.0.4",
     "sass-loader": "^8.0.2",
     "terser-webpack-plugin": "^2.3.6",
     "webpack": "^4.43.0",
@@ -53,8 +54,11 @@
   },
   "scripts": {
     "test": "jest --forceExit -c jest.config.js",
+    "server": "nodemon api/index.js",
     "start": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "deploy:app": "firebase deploy --only hosting",
+    "deploy:api": "firebase deploy --only functions"
   },
   "repository": {
     "type": "git",

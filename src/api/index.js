@@ -1,82 +1,35 @@
 import * as R from 'ramda';
-import axios from 'axios';
-import { v4 as uuid } from 'uuid';
+import fetch from 'node-fetch';
 
-function CustomException(error) {
+const CustomException = async (error) => {
+  const data = await error.json();
   return {
-    message: R.pathOr('', ['message'], error),
-    status: R.pathOr(500, ['response', 'status'], error),
-    url: R.pathOr('', ['response', 'config', 'url'], error),
-    statusText: R.pathOr('', ['response', 'statusText'], error),
-    data: R.pathOr(null, ['response', 'data'], error),
+    data,
+    error: true,
+    status: R.pathOr(500, ['status'], error),
+    url: R.pathOr('', ['url'], error),
+    statusText: R.pathOr('', ['statusText'], error),
   };
-}
+};
 
-const get = (endpoint, headers, options = {}) => {
+const get = async (endpoint, headers, options = {}) => {
   const commonHeaders = {
     'Content-Type': 'application/json',
-    'x-correlation-id': uuid(),
+    'Access-Control-Allow-Origin': '*',
   };
   const commonOptions = {
     method: 'GET',
-    responseType: 'json',
     ...options,
   };
-  return axios.get(endpoint,
+  const response = await fetch(endpoint,
     {
       ...commonOptions,
       headers: { ...commonHeaders, ...headers },
-    })
-    .then((response) => response.data)
-    .catch((error) => {
-      throw new CustomException(error);
     });
+  return response.ok ? response.json() : CustomException(response);
 };
 
-const post = (endpoint, body, headers, options = {}) => {
-  const commonHeaders = {
-    'Content-Type': 'application/json',
-    'x-correlation-id': uuid(),
-  };
-  const commonOptions = {
-    method: 'POST',
-    responseType: 'json',
-    ...options,
-  };
-  return axios.post(endpoint, body,
-    {
-      ...commonOptions,
-      headers: { ...commonHeaders, ...headers },
-    })
-    .then((response) => response.data)
-    .catch((error) => {
-      throw new CustomException(error);
-    });
-};
-
-const put = (endpoint, body, headers, options = {}) => {
-  const commonHeaders = {
-    'Content-Type': 'application/json',
-    'x-correlation-id': uuid(),
-  };
-  const commonOptions = {
-    method: 'POST',
-    responseType: 'json',
-    ...options,
-  };
-  return axios.put(endpoint, body,
-    {
-      ...commonOptions,
-      headers: { ...commonHeaders, ...headers },
-    })
-    .then((response) => response.data)
-    .catch((error) => {
-      throw new CustomException(error);
-    });
-};
-
-export default {
+export {
   get,
-  post,
-  put,
+  CustomException,
 };

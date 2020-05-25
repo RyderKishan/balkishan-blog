@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 import { Fab, Zoom, Grow } from '@material-ui/core';
-import fetch from 'node-fetch';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 
 import { useWidth } from '../../utils';
 import useStyles from './styles';
 import { sections } from './constants';
 import config from '../../config';
-// import { get } from '../../api';
+import { get } from '../../api';
 
 const Home = () => {
   const [scroll, setScroll] = useState(1);
@@ -17,19 +16,10 @@ const Home = () => {
     screenHeight: window.innerHeight,
     width: useWidth(),
   });
-  const getCount = (url) => {
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-    }).then((response) => response.json())
-      .then((count) => {
-        setPageCount(count || 0);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const getCount = async (url) => {
+    const response = await get(url);
+    const count = response.error ? 0 : response;
+    setPageCount(count);
   };
   React.useEffect(() => {
     getCount(`${config.API_LINK}/users/visit`);

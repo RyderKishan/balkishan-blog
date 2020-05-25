@@ -1,10 +1,10 @@
 const express = require('express');
+const { v4: uuid } = require('uuid');
 
 const firebase = require('../firebase');
 const { exceptionHandler } = require('../utils');
 
 const router = express.Router();
-
 const db = firebase.firestore();
 
 router.post('/add', async (req, res) => {
@@ -18,16 +18,6 @@ router.post('/add', async (req, res) => {
     exceptionHandler(error, res);
   }
 });
-
-// router.get('/:userId', (req, res) => {
-//   const { userId } = req.params;
-//   db.collection('users').doc(userId).get()
-//     .then((user) => {
-//       if (!user.exists) throw new Error('User not found');
-//       res.status(200).json({ id: user.id, data: user.data() });
-//     })
-//     .catch((error) => res.status(500).send(error));
-// });
 
 router.get('/getall', async (req, res) => {
   console.log('Get All Users');
@@ -46,11 +36,13 @@ router.get('/getall', async (req, res) => {
 router.get('/visit', async (req, res) => {
   console.log('Visit Update');
   try {
-    const siteVisit = await db.collection('counts').doc('siteVisit').get();
-    const siteVisitCount = siteVisit.data();
-    const { total = 0 } = siteVisitCount;
-    await db.collection('counts').doc('siteVisit').set({ total: total + 1 });
-    res.status(200).json(total);
+    await db.collection('siteVisits').doc(new Date().toISOString()).set({
+      userAgent: req.headers['user-agent'],
+      uuid: uuid(),
+    });
+    const siteVisits = await db.collection('siteVisits').get();
+    const siteVisitsCount = siteVisits.size;
+    res.status(200).json(siteVisitsCount);
   } catch (error) {
     exceptionHandler(error, res);
   }
@@ -59,10 +51,9 @@ router.get('/visit', async (req, res) => {
 router.get('/count', async (req, res) => {
   console.log('Get Count');
   try {
-    const siteVisit = await db.collection('counts').doc('siteVisit').get();
-    const siteVisitCount = siteVisit.data();
-    const { total = 0 } = siteVisitCount;
-    res.status(200).json(total);
+    const siteVisits = await db.collection('siteVisits').get();
+    const siteVisitsCount = siteVisits.size;
+    res.status(200).json(siteVisitsCount);
   } catch (error) {
     exceptionHandler(error, res);
   }

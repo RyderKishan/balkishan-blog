@@ -31,6 +31,15 @@ const useStyles = makeStyles((theme) => ({
     bottom: theme.spacing(4),
     right: theme.spacing(4),
   },
+  pageViews: {
+    position: 'fixed',
+    bottom: '2em',
+    left: '2em',
+    background: theme.palette.secondary.main,
+    color: theme.palette.secondary.contrastText,
+    borderRadius: '2em',
+    padding: '1em',
+  },
 }));
 
 export default useStyles;

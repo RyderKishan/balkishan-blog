@@ -33,6 +33,7 @@
     "react"
   ],
   "rules": {
+    "no-console": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {

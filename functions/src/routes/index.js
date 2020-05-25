@@ -1,7 +1,7 @@
 const restapi = require('./restapi');
-// const auth = require('./auth');
+const users = require('./users');
 
-exports.bind = (app) => {
-  app.use(restapi);
-  // app.use('/api', auth);
+exports.mergeRouter = (app) => {
+  app.use('/restapi', restapi);
+  app.use('/users', users);
 };

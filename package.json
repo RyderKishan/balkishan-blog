@@ -59,6 +59,7 @@
     "server": "nodemon api/index.js",
     "start": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
+    "deploy": "firebase deploy",
     "deploy:app": "firebase deploy --only hosting",
     "deploy:api": "firebase deploy --only functions"
   },

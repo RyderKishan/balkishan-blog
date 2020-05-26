@@ -1,4 +1,5 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 const merge = require('webpack-merge');
 const CompressionPlugin = require('compression-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -61,6 +62,9 @@ module.exports = merge(common, {
     },
   },
   plugins: [
+    new Dotenv({
+      path: './config.app.prod.env',
+    }),
     new CleanWebpackPlugin(),
     new CompressionPlugin({
       algorithm: 'gzip',

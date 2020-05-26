@@ -31,6 +31,7 @@
     "compression-webpack-plugin": "^3.1.0",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.5.3",
+    "dotenv-webpack": "^1.8.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-loader": "^4.0.2",
@@ -53,6 +54,7 @@
     "webpack-merge": "^4.2.2"
   },
   "scripts": {
+    "env": "touch config.api.local.envs config.app.local.envs config.app.prod.envs",
     "test": "jest --forceExit -c jest.config.js",
     "server": "nodemon api/index.js",
     "start": "webpack-dev-server --config webpack.dev.js",
